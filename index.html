@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A free picture book that explains 70 UX design principles through tiny tales about Pip, a bunny who runs a toy shop. For adults, kids and product owners.">
+<meta property="og:title" content="Why the Door Says Push">
+<meta property="og:description" content="A book about design for adults, kids and product owners, by Anna Makiievska.">
+<meta property="og:type" content="book">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Why the Door Says Push</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Schoolbell&display=swap">
+<style>
+/* Layout: one centered book on a soft table; Figma pages rendered at 2731×3642 design units and scaled to fit. */
+:root{
+  --table:#e9eef2; --table-ink:#4a6476; --table-soft:#c9d5de;
+  --ink:#385162; --title:#1b83cd; --cover-title:#ef5634; --cover-sub:#456f8d;
+  --chrome:#747c81; --chrome-line:#c4ccd1; --spine:rgba(40,52,60,.28);
+  --panel:#ffffff; --panel-ink:#22313b; --panel-line:#d5dde3; --accent:#1b83cd;
+  --f-display:"Amatic SC","Chalkboard SE","Comic Sans MS",cursive;
+  --f-hand:"Schoolbell","Chalkboard SE","Comic Sans MS",cursive;
+  --f-ui:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --table:#1d252b; --table-ink:#b7c7d2; --table-soft:#3a4852; --chrome:#a3acb2; --chrome-line:#46535c;
+  --panel:#273138; --panel-ink:#e6edf2; --panel-line:#3c4a54; --accent:#6db8ec; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --table:#1d252b; --table-ink:#b7c7d2; --table-soft:#3a4852; --chrome:#a3acb2; --chrome-line:#46535c;
+  --panel:#273138; --panel-ink:#e6edf2; --panel-line:#3c4a54; --accent:#6db8ec; color-scheme:dark}
+
+html,body{height:100%}
+body{background:var(--table);color:var(--table-ink);font-family:var(--f-hand);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;box-sizing:border-box;padding-block:12px}
+.stage{display:flex;justify-content:center;width:100%}
+.book-wrap{width:max(600px,min(calc(100vw - 48px),calc((100svh - 96px) * 1.5)));position:relative}
+@media (max-width:760px),(max-aspect-ratio:1/1){
+  .book-wrap{width:min(calc(100vw - 32px),calc((100svh - 96px) * .75),599px)}
+}
+#book{margin:0 auto;filter:drop-shadow(0 18px 30px rgba(20,40,55,.22))}
+#book.edit-mode .page{cursor:crosshair}
+
+/* ----- pages ----- */
+.page{background:#f7f6f2;overflow:hidden}
+.pg{position:absolute;left:0;top:0;width:2731px;height:3642px;transform-origin:0 0;transform:scale(var(--s,.2));
+  background:url("assets/paper-background.webp") center bottom / 100% 100% no-repeat;color:var(--ink);font-family:var(--f-hand)}
+.pg img{position:absolute;mix-blend-mode:multiply;max-width:none;display:block;user-select:none;-webkit-user-drag:none}
+.pg .num{position:absolute;left:260px;right:260px;top:3322px;height:180px;text-align:center;font-size:120px;line-height:1.5;letter-spacing:2.4px;mix-blend-mode:multiply}
+.tale-text{position:absolute;left:260px;width:2212px;mix-blend-mode:multiply}
+.tale-text h2{margin:0 0 80px;font-family:var(--f-display);font-weight:700;color:var(--title);line-height:normal;letter-spacing:.04em;text-wrap:balance}
+.tale-text p{margin:0;line-height:1.5;letter-spacing:.02em}
+
+/* cover */
+.cover .bkg{left:1px;top:0;width:2731px;height:3642px;transform:scaleX(-1);object-fit:cover}
+.cover h1{position:absolute;left:50%;top:531px;width:2409px;transform:translateX(-50%);margin:0;text-align:center;
+  font-family:var(--f-display);font-weight:700;font-size:435.556px;line-height:.9;letter-spacing:17.42px;color:var(--cover-title);mix-blend-mode:multiply}
+.cover .art{left:50%;top:1386px;width:1102px;height:1659px;transform:translateX(-50%)}
+.cover .sub{position:absolute;left:50%;top:3045px;width:1685px;transform:translateX(-50%);margin:0;text-align:center;font-size:100px;line-height:1.4;letter-spacing:2px;color:var(--cover-sub);mix-blend-mode:multiply}
+.back .box{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1233px;display:flex;flex-direction:column;gap:100px;text-align:center;mix-blend-mode:multiply}
+.back h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:200px;letter-spacing:8px;line-height:normal;color:var(--title)}
+.back .note{font-size:72px;line-height:1.4;letter-spacing:1.44px;color:var(--ink)}
+.back .note p{margin:0}
+.back .note .made{margin-top:403px}
+.back .note a{color:inherit;text-decoration:none}
+
+/* about */
+.about .orn{left:40px;top:40px;width:969px;height:969px}
+.about .body{position:absolute;left:502px;top:458px;width:1803px;font-size:72px;line-height:1.4;letter-spacing:1.44px;mix-blend-mode:multiply}
+.about .body p{margin:0 0 100.8px}
+.about .body p.sign{margin:0}
+
+/* contents + sources */
+.list-page .box{position:absolute;left:50%;transform:translateX(-50%);top:458px;width:1040px;display:flex;flex-direction:column;gap:180px;mix-blend-mode:multiply}
+.list-page h2{margin:0;text-align:center;font-family:var(--f-display);font-weight:700;font-size:200px;letter-spacing:8px;color:var(--title);line-height:normal}
+.toc{display:flex;flex-direction:column}
+.toc button{all:unset;display:flex;align-items:baseline;font-size:80px;line-height:2.1;letter-spacing:1.6px;color:var(--ink);cursor:pointer;white-space:nowrap}
+.toc button::before{content:"";order:1;flex:1;margin:0 24px;height:8px;align-self:center;transform:translateY(20px);
+  background:radial-gradient(circle,currentColor 2.6px,transparent 3.2px) 0 0 / 20px 8px repeat-x;opacity:.8}
+.toc button::after{content:attr(data-num);order:2}
+.toc button:hover,.toc button:focus-visible{color:var(--title)}
+.toc button:focus-visible{outline:10px solid var(--title);outline-offset:14px;border-radius:20px}
+.list-page .vig{left:454px;top:2881px;width:1824px;height:608px}
+.sources .box{width:1811px}
+.src{margin:0;padding-left:120px;font-size:80px;line-height:1.8;letter-spacing:1.6px}
+.src li{padding-left:10px}
+.src a{color:inherit;text-decoration:none}
+.src a:hover{color:var(--title)}
+
+/* chapter opener */
+.chap .box{position:absolute;left:50%;transform:translateX(-50%);top:2250px;width:1811px;text-align:center;mix-blend-mode:multiply}
+.chap h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:200px;line-height:normal;letter-spacing:8px;color:var(--cover-title)}
+.chap .lbl{margin:0;font-size:80px;line-height:1.8;letter-spacing:1.6px;color:var(--ink)}
+.chap .cimg{transform:none}
+.chap .cimg.flip{transform:scaleX(-1)}
+
+/* spine and gutter shadow on open spreads */
+.spine{position:absolute;pointer-events:none;z-index:5;transform:translateX(-50%);
+  background:
+   linear-gradient(90deg,transparent 0,rgba(40,52,60,.10) 38%,rgba(40,52,60,.22) 49.2%,var(--spine) 49.6%,var(--spine) 50.4%,rgba(40,52,60,.22) 50.8%,rgba(40,52,60,.10) 62%,transparent 100%);
+  mix-blend-mode:multiply;transition:opacity .15s}
+.spine[hidden]{display:none}
+
+/* toolbar */
+.bar{--ui:clamp(13px,calc(72px * var(--s,.2)),18px);display:flex;align-items:center;gap:14px;font:400 var(--ui)/1.2 var(--f-ui);color:var(--chrome)}
+.bar button{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:20px;line-height:1;color:var(--chrome);border:1.5px solid var(--chrome-line)}
+.bar button:hover{border-color:var(--chrome)}
+.bar label{display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.bar input{all:unset;box-sizing:border-box;width:3.4em;height:1.9em;text-align:center;border:1.5px solid var(--chrome-line);border-radius:8px;color:var(--chrome);font:inherit;font-variant-numeric:tabular-nums}
+.bar input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bar .where{min-width:9em;text-align:center}
+.bar button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.bar button:disabled{opacity:.35;cursor:default}
+.hint{font:400 clamp(12px,calc(56px * var(--s,.2)),15px)/1.3 var(--f-ui);color:var(--chrome);text-align:center}
+
+/* ----- layout editor (open with #edit) ----- */
+#editor{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;
+  width:min(310px,calc(100vw - 24px));background:var(--panel);color:var(--panel-ink);border:1px solid var(--panel-line);border-radius:12px;
+  box-shadow:0 12px 32px rgba(0,0,0,.18);font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;padding:14px;display:flex;flex-direction:column;gap:10px}
+#editor[hidden]{display:none}
+#editor h3{margin:0;font-size:14px}
+#editor .row{display:flex;align-items:center;gap:8px;justify-content:space-between}
+#editor .seg{display:flex;border:1px solid var(--panel-line);border-radius:8px;overflow:hidden}
+#editor .seg button{all:unset;padding:4px 10px;cursor:pointer}
+#editor .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+#editor input[type=range]{width:150px}
+#editor .val{width:44px;text-align:right;font-variant-numeric:tabular-nums}
+#editor .actions{display:flex;gap:8px;flex-wrap:wrap}
+#editor .actions button{all:unset;cursor:pointer;padding:6px 10px;border-radius:8px;border:1px solid var(--panel-line)}
+#editor .actions button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+#editor button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#editor textarea{width:100%;box-sizing:border-box;height:90px;font:11px/1.3 ui-monospace,monospace;background:transparent;color:inherit;border:1px solid var(--panel-line);border-radius:8px}
+#editor small{opacity:.75}
+.sel-outline{outline:none}
+#book.edit-mode .page.selected{box-shadow:inset 0 0 0 4px var(--accent)}
+#measure{position:absolute;left:-99999px;top:0;visibility:hidden}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<!--
+  PAGE LAYOUT OVERRIDES
+  One entry per tale number. Any field you leave out is calculated automatically.
+    pos:   "top" | "bottom"          where the illustration sits
+    align: "left" | "center" | "right"
+    img:   illustration width in Figma pixels (page is 2731 wide; default fits up to 2483)
+    dx,dy: nudge the illustration (Figma pixels)
+    title: title font size (default 260)   text: tale font size (default 120, shrinks to fit)
+  Example: "12": {"pos":"bottom","align":"right","img":2100,"text":110}
+-->
+<script id="layout" type="application/json">
+{
+ "1": {"pos": "top", "align": "left", "dx": 40, "img": 2320, "dy": -10, "text": 108, "title": 250},
+ "2": {"pos": "bottom", "dy": 70, "text": 108, "title": 250},
+ "4": {"pos": "bottom", "img": 2570, "dy": 180},
+ "5": {"img": 2390, "dy": 230},
+ "7": {"pos": "top", "dx": 80, "dy": -10, "img": 2580},
+ "8": {"img": 2580, "dx": 70, "pos": "bottom", "dy": -40},
+ "9": {"dy": 130, "img": 2270},
+ "10": {"img": 2730},
+ "11": {"dx": 130, "pos": "bottom", "dy": 60},
+ "12": {"dx": -20, "img": 2700, "dy": 0},
+ "13": {"pos": "bottom", "img": 2370, "dy": 140},
+ "14": {"pos": "bottom", "img": 2240, "dy": -210},
+ "15": {"img": 2730, "dy": -50},
+ "16": {"img": 2390, "dx": -30, "dy": 210},
+ "17": {"pos": "bottom"},
+ "18": {"img": 2510, "dy": 140},
+ "19": {"pos": "bottom", "dy": 10, "img": 2440},
+ "20": {"pos": "bottom", "img": 2530, "dy": -30},
+ "21": {"dy": 100, "img": 2340},
+ "22": {"dy": 160, "img": 2500},
+ "23": {"pos": "bottom", "dy": 350},
+ "24": {"img": 2170, "dy": 120},
+ "25": {"dx": 0, "img": 2730, "pos": "top"},
+ "26": {"pos": "bottom", "dy": 100, "img": 2480},
+ "27": {"img": 2290, "dy": 170, "dx": 10},
+ "28": {"pos": "bottom", "img": 2220},
+ "29": {"img": 2360, "dy": 100},
+ "30": {"img": 2370, "dy": 120, "dx": 50},
+ "31": {"pos": "bottom", "dy": 80},
+ "32": {"dy": 200},
+ "33": {"pos": "bottom", "dy": 100},
+ "34": {"pos": "bottom", "dy": 90},
+ "36": {"dx": 90, "img": 2610, "dy": -10},
+ "37": {"dy": 190, "img": 2460},
+ "38": {"pos": "bottom", "dy": 130},
+ "39": {"dx": -80, "img": 2580, "dy": 100},
+ "40": {"pos": "bottom", "dy": 80, "img": 2590},
+ "41": {"pos": "bottom", "img": 2330, "dy": -20},
+ "42": {"img": 2340, "dy": 180},
+ "43": {"dy": 150},
+ "44": {"pos": "bottom", "dy": 140, "img": 2390, "dx": 30},
+ "45": {"dy": 170, "img": 2320},
+ "46": {"pos": "bottom", "dy": 80},
+ "47": {"pos": "bottom", "img": 2170, "dy": 10},
+ "48": {"img": 2400, "dy": 140},
+ "49": {"pos": "bottom", "img": 2310, "dy": -60},
+ "50": {"img": 2440, "dy": 130},
+ "51": {"img": 2340},
+ "52": {"pos": "bottom", "img": 2490, "dy": 70},
+ "53": {"pos": "bottom", "img": 2440, "dy": 110},
+ "54": {"pos": "bottom"},
+ "56": {"pos": "top", "dy": 210, "img": 2430},
+ "57": {"pos": "bottom", "dy": 100},
+ "58": {"pos": "bottom"},
+ "59": {"img": 2670, "dy": 0, "dx": 10},
+ "60": {"img": 2620, "dy": 170},
+ "61": {"pos": "bottom", "img": 2180, "dy": -10},
+ "62": {"img": 2450},
+ "63": {"pos": "bottom", "dy": 180, "img": 2730},
+ "64": {"dx": 20, "dy": -10, "img": 2420},
+ "65": {"pos": "bottom", "img": 2380, "dx": 20},
+ "66": {"dy": -20, "img": 2550, "dx": 100},
+ "67": {"dy": 10},
+ "68": {"pos": "bottom"},
+ "69": {"pos": "bottom", "dy": 120, "img": 2480}
+}
+</script>
+
+<div class="stage"><div class="book-wrap"><div id="book" aria-label="Why the Door Says Push, a picture book" role="region"></div><div class="spine" id="spine" hidden></div></div></div>
+<div class="bar">
+  <button id="prev" type="button" aria-label="Previous page">‹</button>
+  <form id="jump" novalidate><label for="pageno">Page <input id="pageno" inputmode="numeric" autocomplete="off" aria-describedby="where" placeholder="–"> of 70</label></form>
+  <span class="where" id="where" aria-live="polite">Cover</span>
+  <button id="next" type="button" aria-label="Next page">›</button>
+</div>
+<div class="hint" id="hint" data-touch="Swipe or tap the edges to turn pages.">Click the right side of the book to turn the page, the left side to go back. On a phone or trackpad, swipe.</div>
+<div id="measure" aria-hidden="true"></div>
+
+<aside id="editor" hidden aria-label="Page layout editor">
+  <h3>Layout · <span id="ed-name">tale</span></h3>
+  <div class="row"><span>Tale</span><span><button id="ed-left" type="button" aria-label="Previous tale" style="all:unset;cursor:pointer;padding:0 6px">‹</button><b id="ed-num">1</b><button id="ed-right" type="button" aria-label="Next tale" style="all:unset;cursor:pointer;padding:0 6px">›</button></span></div>
+  <div class="row"><span>Picture</span><div class="seg" data-key="pos"><button type="button" data-v="top">Top</button><button type="button" data-v="bottom">Bottom</button></div></div>
+  <div class="row"><span>Align</span><div class="seg" data-key="align"><button type="button" data-v="left">Left</button><button type="button" data-v="center">Center</button><button type="button" data-v="right">Right</button></div></div>
+  <div class="row"><label for="ed-img">Picture size</label><input id="ed-img" type="range" min="1200" max="2731" step="10"><span class="val" id="v-img"></span></div>
+  <div class="row"><label for="ed-dx">Nudge ←→</label><input id="ed-dx" type="range" min="-600" max="600" step="10"><span class="val" id="v-dx"></span></div>
+  <div class="row"><label for="ed-dy">Nudge ↑↓</label><input id="ed-dy" type="range" min="-600" max="600" step="10"><span class="val" id="v-dy"></span></div>
+  <div class="row"><label for="ed-title">Title size</label><input id="ed-title" type="range" min="160" max="320" step="5"><span class="val" id="v-title"></span></div>
+  <div class="row"><label for="ed-text">Text size</label><input id="ed-text" type="range" min="70" max="150" step="2"><span class="val" id="v-text"></span></div>
+  <div class="actions">
+    <button type="button" id="ed-reset">Reset this page</button>
+    <button type="button" class="primary" id="ed-copy">Copy all changes</button>
+  </div>
+  <textarea id="ed-out" readonly aria-label="Layout changes"></textarea>
+  <small>Click a page to select it. Changes are kept in this browser. Copy them and send to Claude, or paste into the layout block in index.html.</small>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+(function(){
+const W=2731,H=3642,RATIO=1087/1446;
+const TALES=[
+["How Brains See","Visual hierarchy","Pip writes \"TOYS!\" really big and \"closed Sundays\" really small, so your eyes know what to read first."],
+["How Brains See","Gestalt principles","When Pip puts three cookies close together, you see one group of cookies, not three lonely ones. Brains love making groups."],
+["How Brains See","Information architecture","Pip's shop has a car shelf, a doll shelf and a block shelf, so you can always find what you want."],
+["How Brains See","Cognitive load","If Mom gives you ten chores at once, your head gets too full. One at a time feels easy."],
+["How Brains See","Affordance","A ball is round, so it says \"roll me!\" A cup has a handle, so it says \"hold me here.\""],
+["How Brains See","Signifiers","The little \"PUSH\" sign on Pip's door is a hint that tells you how to open it."],
+["How Brains See","Mental models","You think every door opens by pushing, because all the doors you know do. That's the picture in your head."],
+["How Brains See","Jakob's Law","Every playground slide goes down. If Pip built one that went up, everyone would be confused. People expect new things to work like things they already know."],
+["How Brains See","Fitts's Law","Pip crosses the stream on big stones set close together. Hop, hop, easy! The tiny stones far apart? Wobble... splash! Things that are big and close are easy to reach."],
+["How Brains See","Hick's Law","Choosing between 2 ice creams is quick. With 40 flavors you stand there forever."],
+["How Brains See","Miller's Law","You can only hold about 7 toys before they start falling. Your memory works the same way, so we split phone numbers into little chunks."],
+["How Brains See","Doherty Threshold","When you press a doorbell and it rings right away, it's fun. If it waits, you think it's broken. Things should answer in less than half a second."],
+["How Brains See","Aesthetic-usability effect","A pretty cake seems tastier than a plain one, even if they're the same. People think pretty things work better."],
+["How Brains See","Serial position effect","You remember the first and last kid in line, but forget the ones in the middle."],
+["How Brains See","Von Restorff effect","On Pip's friend's street every house looks alike. How does Pip find his friend's house? \"It's the one with the red door!\""],
+["How Brains See","Progressive disclosure","An advent calendar opens one little door a day, not everything at once."],
+["How Brains See","Recognition vs. recall","\"What does your lost hat look like?\" Pip isn't sure. But when he looks in the lost-and-found box, he spots it right away: \"That's mine!\""],
+["How Brains See","Consistency","A red light means stop on every street, so you never have to guess."],
+["How Brains See","Feedback","Pip puts a letter for Grandma in the mailbox and raises the little red flag. Next morning, the flag is down. That's the mail carrier saying: \"Got it! Your letter is on its way.\""],
+["How Brains See","Mapping","Pip turns his wheel, and his little car turns the same way. The wheel moves just like the car, so driving is easy!"],
+["How Brains See","Constraints","A puzzle piece only fits in one spot, so you can't put it in the wrong place."],
+["People (and Bunnies)","User flows","Pip walks to Grandma's house. At the river, he can take the bridge, or the boat if the bridge is busy. Either way, he ends up at Grandma's door. Different paths, same happy ending."],
+["People (and Bunnies)","Task flows","Pip plants a seed: dig a little hole, drop the seed in, cover it with soil, give it water. Four small steps, and one day a flower."],
+["People (and Bunnies)","User journey map","Pip draws his walk to Grandma's as a hilly line: happy at the start, tired on the long hill, scared in the dark forest, overjoyed at Grandma's hugs. Next time, he brings a lantern for the dark part."],
+["People (and Bunnies)","Service blueprints","Customers see neat shelves full of toys. They don't see Pip in the back room, unpacking boxes, fixing broken wheels and wrapping gifts."],
+["People (and Bunnies)","Personas","Pretend friend cards, like \"Sam, 7, loves dinosaurs, scared of loud noises,\" so Pip remembers who he's building toys for."],
+["People (and Bunnies)","Jobs to Be Done","You don't want a hammer. You want your drawing on the wall."],
+["Trying Things Out","Usability testing","Give a friend your new toy and quietly watch where they get stuck."],
+["Trying Things Out","A/B testing","Bake blue cookies and pink cookies, then see which ones get eaten more."],
+["Trying Things Out","Heuristic evaluation","A grown-up checks your toy against a list of rules for good toys."],
+["Trying Things Out","Cognitive walkthrough","Before his friends come, Pip walks his treasure hunt himself, as if it's new. At each clue he asks, \"Would I know where to go?\" At clue three he gets lost, so he fixes it."],
+["Trying Things Out","Card sorting","Pip asks friends to sort pictures of snacks for the picnic. He expected \"sweet\" and \"salty,\" but they made \"eat with paws\" and \"eat with a spoon.\" Now he packs the basket their way."],
+["Trying Things Out","Tree testing","Are Grandma's garden markers clear? To check, she asks Pip to water the carrots, without pointing. Pip finds the carrot stick right away. The markers work!"],
+["Trying Things Out","First-click testing","Pip watches friends at the forest fork. A right first step leads to Grandma's; a wrong one gets them lost. So Pip adds a sign at the start."],
+["Trying Things Out","Five-second testing","A friend runs past Pip's shop window. \"What do I sell?\" Pip asks. \"Cakes?\" Oops. Pip puts a big teddy in the window."],
+["Room for Everyone","Accessibility","Building the treehouse with a ramp too, so your friend in a wheelchair can come up."],
+["Room for Everyone","WCAG","Before opening his shop, Pip checks the big rulebook: Can everyone see it? Reach it? Understand it? Use it? Tick, tick, tick, tick!"],
+["Room for Everyone","Color contrast","Pip draws two invitations to his birthday. The light purple one is hard to read on white paper. The dark purple one is easy. Guess which one brings friends to the party!"],
+["Room for Everyone","Semantic HTML","Labeling every box correctly (\"this is a title,\" \"this is a button\") so helpers understand what's inside."],
+["Room for Everyone","Screen reader","A robot friend who reads the screen out loud for people who can't see it."],
+["Room for Everyone","Keyboard navigation","No grabbing allowed! Pip moves the claw with just the buttons: left, left, forward... drop! He picks his teddy one step at a time."],
+["Room for Everyone","Focus states","At the amusement park, Pip finds a big map. A bright dot says, \"You are here!\" Now he knows where he is and where to go next."],
+["Every Screen Size","Responsive design","At the big table, Pip lays out all the snacks in one long row. At the tiny table, he stacks them in two neat rows. Same snacks, it all fits!"],
+["Every Screen Size","Adaptive design","Shoes in different sizes, each one made ready for a different foot."],
+["Every Screen Size","Mobile-first design","Pack the tiny backpack first with only what really matters, then add more to the big suitcase."],
+["Building Blocks","Design tokens","Every cake in Grandma's bakery uses one recipe card: \"Grandma's frosting.\" When she changes the recipe to a little sweeter, every cake gets sweeter too."],
+["Building Blocks","Component libraries","A LEGO bin full of ready-made doors, windows and wheels."],
+["Building Blocks","Design systems","The LEGO bin, plus the instruction book, plus the rules for building."],
+["Building Blocks","Atomic design","Tiny bricks make a wall, walls make a room, and rooms make a house."],
+["Building Blocks","Auto layout","Every time Pip adds a bead, the necklace gets a little longer. The beads always sit neatly in a row, no gaps and no squishing."],
+["Building Blocks","Variants","Happy Pip, sleepy Pip, Pip in a hat. Different versions, but always the same Pip."],
+["Building Blocks","Variables","A magic switch that turns the whole room from daytime colors to nighttime colors at once."],
+["Little Moments","Design debt","In a hurry, Pip shoves his toys under the bed instead of putting them away. It's quick today, but the pile grows every day, and soon he can't find anything."],
+["Little Moments","Interaction design","How a toy answers when you play with it. You squeeze the duck, and it quacks."],
+["Little Moments","Microinteractions","Every time someone opens Pip's shop door, a little bell goes ding-a-ling! Such a tiny thing, but Pip always knows a friend has arrived."],
+["Little Moments","Motion design","Pip kicks the ball, and it rolls across the grass to his teammate. Everyone watching knows who has the ball now, because they saw it go."],
+["Little Moments","Empty states","A brand-new empty toy box with a note: \"Put your first toy here!\""],
+["Little Moments","Error states","Pip's letter to Grandma comes back with a little note: \"Oops! We need Grandma's address.\" Pip adds it, sends it again, and this time it arrives."],
+["Little Moments","Loading states","Pip presses the button, and the floor lights start moving toward him: 4, 3, 2… He knows it's coming, so he doesn't press again and again."],
+["Little Moments","Edge cases","What if a giant comes to the tea party? What if nobody comes? These are the weird, rare surprises."],
+["Growing the Shop","Conversion rate optimization","Many friends stop at Pip's lemonade stand, but few buy. So he makes it easier: a clear price and cups ready to grab. Now more friends buy a cup!"],
+["Growing the Shop","North Star metric","One friend wants to fish, one wants to turn the captain's wheel, one wants to splash. But they all steer by one bright star, so the boat goes the right way. One shared number keeps a team together."],
+["Growing the Shop","Activation","The moment a new kid first plays with a toy and says \"oh wow, I get it!\""],
+["Growing the Shop","Retention","Lots of friends visit Pip's shop once. But the same faces keep coming back, week after week. That's how Pip knows his shop is worth returning to."],
+["Growing the Shop","Churn","Some friends who used to visit every week slowly stop coming."],
+["Growing the Shop","Acquisition","Nobody knew about Pip's shop, so he tied balloons to the sign. Kids across the park saw them and came running."],
+["Growing the Shop","Referrals","A friend loves her new toy so much that she brings her little brother: \"You have to see Pip's shop!\" Pip thanks her with cotton candy, and now he has two happy customers."],
+["Growing the Shop","Revenue","Friends only pay for toys they really love. So every coin is a little vote: \"This toy is worth it!\" When the coins slow down, Pip knows a toy needs to get better."],
+["Working Together","Design critique","Friends look at your drawing and kindly say what works and what could be better. They talk about the drawing, not about you."],
+["Working Together","Developer handoff","Giving the builder your treehouse drawing with every measurement, so they can build it just right."]
+];
+const CHAPTERS=[["How Brains See",1],["People (and Bunnies)",22],["Trying Things Out",28],["Room for Everyone",36],["Every Screen Size",43],["Building Blocks",46],["Little Moments",53],["Growing the Shop",61],["Working Together",69]];
+const SOURCES=[
+ ["Jon Yablonski, Laws of UX","https://lawsofux.com/"],
+ ["Don Norman, The Design of Everyday Things","https://www.nngroup.com/books/the-design-of-everyday-things/"],
+ ["Steve Krug, Don't Make Me Think","https://www.blinkist.com/books/dont-make-me-think-en"],
+ ["Nielsen Norman Group, articles on UX research and usability","https://www.nngroup.com/articles/"],
+ ["W3C, Web Content Accessibility Guidelines (WCAG)","https://www.w3.org/WAI/standards-guidelines/wcag/"],
+ ["Brad Frost, Atomic Design","https://atomicdesign.bradfrost.com/"],
+ ["Clayton M. Christensen et al., Competing Against Luck (Jobs to Be Done)","https://cdn.bookey.app/files/pdf/book/en/competing-against-luck.pdf"],
+ ["Sean Ellis and Morgan Brown, Hacking Growth","https://cdn.bookey.app/files/pdf/book/en/hacking-growth-by-sean-ellis.pdf"],
+ ["Interaction Design Foundation, UX glossary and courses","https://www.interaction-design.org/"]
+];
+// chapter opener art from Figma frames Chapter-1…9: [left, top, width, height, mirrored]
+const CHAP_ART=[[842,1013,1047,1047,1],[575,1136,1581,1054],[608,734,1516,1516],[598,1151,1536,1024],[667,1210,1397,931],[789,1020,1153,1153],[807,1086,1117,1117],[780,951,1171,1171],[842,1013,1047,1047]];
+const CHAP_TITLE=["How our brains see","People (and bunnies)","Trying things out","Room for everyone","Every screen size","Building blocks","Little moments","Growing the shop","Working together"];
+const TALE_PAGE={},CHAP_PAGE={}; // tale number / chapter number -> page index
+const tp=n=>pages[TALE_PAGE[n]];
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ---------- layout overrides ---------- */
+let BASE={};try{BASE=JSON.parse(document.getElementById("layout").textContent||"{}")}catch(e){BASE={}}
+let LOCAL={};try{LOCAL=JSON.parse(localStorage.getItem("pip-layout")||"{}")}catch(e){LOCAL={}}
+const conf=n=>Object.assign({},BASE[n]||{},LOCAL[n]||{});
+function saveLocal(){try{localStorage.setItem("pip-layout",JSON.stringify(LOCAL))}catch(e){}}
+
+/* ---------- build pages ---------- */
+const book=document.getElementById("book");
+const pages=[];
+function addPage(html,cls,hard){const d=document.createElement("div");d.className="page";if(hard)d.dataset.density="hard";
+  d.innerHTML='<div class="pg '+(cls||"")+'">'+html+'</div>';book.appendChild(d);pages.push(d);return d}
+
+addPage('<img class="bkg" alt="" data-src="assets/cover-background.webp">'+
+  '<h1>why the door says PUSH</h1>'+
+  '<img class="art" alt="Pip the bunny pushes open a white door with a red PUSH sign into a warm, glowing toy shop" data-src="assets/cover-illustration.webp">'+
+  '<p class="sub">A book about design for adults, kids and product owners</p>',"cover",true);
+
+addPage('<img class="orn" alt="" data-src="assets/about-ornament.webp"><div class="body">'+
+ ['Hello!','You might be wondering what this book is for.',
+  'As a product designer, I’ve often seen people puzzled by design: how it works, and what it’s really for. So I asked myself: what if we explained design the way we explain the world to a five-year-old?',
+  'This book collects 70 useful terms every designer keeps in their pocket. Each one is a tiny tale about Pip, a bunny who runs a toy shop and learns to make it better for his friends, and who discovers how design impacts his everyday life.',
+  'It’s for kids curious about what designers do, for product owners who want the “why” behind design decisions, and for designers and beginners who might enjoy seeing familiar rules in a new light.',
+  'This book is also my experiment in working with AI, made to be both meaningful and fun.',
+  'Turn the page and push the door!'].map(t=>'<p>'+esc(t)+'</p>').join('')+
+ '<p class="sign">Anna<br>November, 2026</p></div>',"about");
+
+addPage('<div class="box"><h2>What’s inside</h2><nav class="toc" aria-label="Chapters">'+
+  CHAPTERS.map((c,k)=>'<button type="button" data-num="'+c[1]+'" data-chap="'+(k+1)+'">'+esc(c[0])+'</button>').join('')+
+  '</nav></div><img class="vig" alt="" data-src="assets/contents-vignette.webp">',"list-page contents");
+
+TALES.forEach((t,i)=>{const n=i+1;
+  const ci=CHAPTERS.findIndex(c=>c[1]===n);
+  if(ci>=0){const end=(CHAPTERS[ci+1]?CHAPTERS[ci+1][1]:71)-1;
+    CHAP_PAGE[ci+1]=pages.length;
+    const ca=CHAP_ART[ci];
+    addPage('<img class="cimg'+(ca[4]?' flip':'')+'" alt="" data-src="assets/chapters/'+(ci+1)+'.webp" style="left:'+ca[0]+'px;top:'+ca[1]+'px;width:'+ca[2]+'px;height:'+ca[3]+'px">'+
+      '<div class="box"><h2>'+esc(CHAP_TITLE[ci])+'</h2><p class="lbl">Chapter '+(ci+1)+'</p></div>',"chap").dataset.chapter=ci+1;}
+  TALE_PAGE[n]=pages.length;
+  const p=addPage('<img class="ill" alt="Illustration for '+esc(t[1])+'" data-src="assets/pages/'+String(n).padStart(2,"0")+'.webp">'+
+   '<div class="tale-text"><h2>'+esc(t[1])+'</h2><p>'+esc(t[2])+'</p></div><div class="num">'+n+'</div>',"tale");
+  p.dataset.tale=n;});
+
+addPage('<div class="box"><h2>Where Pip learned it</h2><ol class="src">'+
+  SOURCES.map(s=>'<li>'+(s[1]?'<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>':esc(s[0]))+'</li>').join('')+
+  '</ol></div><img class="vig" alt="" data-src="assets/sources-vignette.webp">',"list-page sources");
+
+if(pages.length%2===0)addPage('',"endpaper"); // keeps the back cover on its own, like a real book
+addPage('<img class="bkg" alt="" data-src="assets/cover-background.webp"><div class="box"><h2>Thank you!</h2><div class="note">'+
+  '<p>These tales were dreamed up with a little help from Claude, who also helped build the book. The pictures began in Midjourney and ChatGPT and were then tidied up, one page at a time. The paper texture is from Nordwood Themes on Unsplash, and the letters are Amatic SC and Schoolbell.</p>'+
+  '<p class="made">Made by Anna Makiievska<br><a href="https://makiievska.design" target="_blank" rel="noopener">www.makiievska.design</a></p>'+
+  '</div></div>',"cover back",true);
+
+/* ---------- fit a tale page ---------- */
+const measure=document.getElementById("measure");
+measure.innerHTML='<div class="pg" style="transform:none;background:none;position:relative"><div class="tale-text" style="position:relative;left:0"><h2></h2><p></p></div></div>';
+const mH=measure.querySelector("h2"),mP=measure.querySelector("p"),mBox=measure.querySelector(".tale-text");
+function textHeight(title,text,ts,xs){mH.textContent=title;mP.textContent=text;mH.style.fontSize=ts+"px";mP.style.fontSize=xs+"px";return mBox.offsetHeight}
+
+/* Each tale page: picture on top (default) or bottom, text auto-shrinks only when the picture would get too small.
+   Facing pages share one title line, so the spread reads evenly. */
+const MAXW=2483,GAP=312; // GAP = 52 + 260 between picture and title (Figma page 1)
+function plan(n){
+  const t=TALES[n-1],c=conf(n),pos=c.pos||"top",title=c.title||250;
+  const budget=hh=>(pos==="top"?H-832:H-780)-hh; // room left for the picture
+  const xs=c.text||108,ch=textHeight(t[1],t[2],title,xs);
+  let w=c.img?c.img:Math.min(MAXW,budget(ch)/RATIO);
+  w=Math.round(Math.max(1000,Math.min(W,w)));
+  return {n,c,pos,title,xs,ch,w,top:Math.round(w*RATIO)+GAP}; // top = where the title would start
+}
+function apply(P,textTop){
+  const p=tp(P.n),pg=p.firstElementChild,img=pg.querySelector(".ill"),box=pg.querySelector(".tale-text"),c=P.c;
+  let w=P.w;
+  if(P.pos==="top"&&!c.img)w=Math.min(w,Math.round((textTop-GAP)/RATIO));
+  const h=Math.round(w*RATIO);
+  box.querySelector("h2").style.fontSize=P.title+"px";box.querySelector("p").style.fontSize=P.xs+"px";
+  const left={left:60,center:(W-w)/2,right:W-w-60}[c.align||"center"]+(c.dx||0);
+  let top;
+  if(P.pos==="top"){top=Math.max(0,textTop-GAP-h)}
+  else{textTop=260;top=Math.max(textTop+P.ch+80,H-460-h)}
+  top+=(c.dy||0);
+  Object.assign(img.style,{width:w+"px",height:h+"px",left:left+"px",top:top+"px"});
+  box.style.top=textTop+"px";
+  p.dataset.fit=JSON.stringify({img:w,text:P.xs});
+}
+function layoutSpread(n){
+  // in a two-page spread, odd page indexes sit on the left
+  const i=TALE_PAGE[n],li=i%2?i:i-1,ta=pages[li]&&pages[li].dataset.tale,tb=pages[li+1]&&pages[li+1].dataset.tale;
+  const A=plan(ta?+ta:n),B=(ta&&tb)?plan(+tb):null;
+  const tops=[A,B].filter(x=>x&&x.pos==="top").map(x=>x.top);
+  const shared=tops.length?Math.min(...tops):0;
+  apply(A,shared||A.top); if(B)apply(B,shared||B.top);
+}
+
+/* ---------- lazy images ---------- */
+function loadAround(i){for(let k=Math.max(0,i-4);k<=Math.min(pages.length-1,i+6);k++)
+  pages[k].querySelectorAll("img[data-src]").forEach(im=>{im.src=im.dataset.src;im.removeAttribute("data-src")})}
+
+/* ---------- start ---------- */
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let pf;
+function setScale(){if(!pf)return;const r=pf.getBoundsRect();if(r){const s=(r.pageWidth/W).toFixed(5);book.style.setProperty("--s",s);document.querySelector(".bar").style.setProperty("--s",s);document.getElementById("hint").style.setProperty("--s",s)}updateSpine()}
+const spine=document.getElementById("spine");let flipping=false;
+function updateSpine(){if(!pf)return;const i=pf.getCurrentPageIndex(),r=pf.getBoundsRect();
+  const open=pf.getOrientation()==="landscape"&&i>0&&i<pages.length-1&&!flipping;
+  spine.hidden=!open;if(!open||!r)return;
+  Object.assign(spine.style,{left:(r.left+r.width/2)+"px",top:r.top+"px",height:r.height+"px",width:Math.round(r.pageWidth*.16)+"px"})}
+function nameOf(pg){if(!pg)return"";if(pg.dataset.tale)return TALES[pg.dataset.tale-1][1];if(pg.dataset.chapter)return"Chapter "+pg.dataset.chapter;
+  const q=c=>pg.querySelector(c);return q(".about")?"About this book":q(".contents")?"What’s inside":q(".sources")?"Sources":q(".back")?"Thank you":q(".endpaper")?"":"Cover"}
+function status(){const i=pf.getCurrentPageIndex(),land=pf.getOrientation()==="landscape";
+  const vis=land&&i>0&&i<pages.length-1?[pages[i],pages[i+1]].filter(Boolean):[pages[i]];
+  const tale=vis.find(p=>p.dataset.tale);
+  const inp=document.getElementById("pageno");if(document.activeElement!==inp)inp.value=tale?tale.dataset.tale:"";
+  document.getElementById("where").textContent=vis.map(nameOf).filter(Boolean).join(" · ");
+  updateSpine();
+  document.getElementById("prev").disabled=i===0;document.getElementById("next").disabled=i>=pages.length-1;
+  loadAround(i);}
+
+document.fonts.ready.then(()=>{
+  for(let n=1;n<=70;n++)layoutSpread(n);
+  loadAround(0);
+  pf=new St.PageFlip(book,{width:546,height:728,size:"stretch",minWidth:300,maxWidth:1400,minHeight:400,maxHeight:1867,
+    showCover:true,usePortrait:true,useMouseEvents:false,mobileScrollSupport:false,maxShadowOpacity:.35,
+    flippingTime:reduce?250:800,drawShadow:true,autoSize:true});
+  pf.loadFromHTML(pages);
+  setScale();status();
+  pf.on("flip",()=>{status();if(editing)pickVisible()});
+  pf.on("changeState",e=>{flipping=e.data!=="read";updateSpine()});
+  pf.on("changeOrientation",()=>{setScale();status()});
+  addEventListener("resize",()=>requestAnimationFrame(setScale));
+  const start=location.hash.match(/^#p(\d+)$/);if(start)go(+start[1]);
+});
+
+function go(n){n=Math.max(1,Math.min(70,n));pf.flip(TALE_PAGE[n]);}
+function goChapter(k){pf.flip(CHAP_PAGE[k]);}
+const next=()=>pf&&pf.flipNext(),prev=()=>pf&&pf.flipPrev();
+document.getElementById("next").onclick=next;document.getElementById("prev").onclick=prev;
+
+/* click halves, swipe, trackpad, keys */
+let down=null;
+book.addEventListener("pointerdown",e=>{down={x:e.clientX,y:e.clientY,t:Date.now(),type:e.pointerType}});
+book.addEventListener("pointerup",e=>{
+  if(!down||!pf)return;const dx=e.clientX-down.x,dy=e.clientY-down.y,d=down;down=null;
+  if(e.target.closest("a,button"))return;
+  if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){dx<0?next():prev();return}
+  if(Math.abs(dx)>8||Math.abs(dy)>8)return;
+  if(editing){const pg=e.target.closest(".page");if(pg&&pg.dataset.tale)select(+pg.dataset.tale);return}
+  const r=book.getBoundingClientRect();(e.clientX<r.left+r.width/2)?prev():next();
+});
+book.addEventListener("click",e=>{const b=e.target.closest("[data-chap]");if(b){e.preventDefault();goChapter(+b.dataset.chap)}});
+document.getElementById("jump").addEventListener("submit",e=>{e.preventDefault();const inp=document.getElementById("pageno"),n=parseInt(inp.value,10);
+  if(n>=1&&n<=70){go(n);inp.blur()}else{inp.value="";inp.placeholder="1–70"}});
+let wheelLock=0;
+addEventListener("wheel",e=>{if(Math.abs(e.deltaX)<Math.abs(e.deltaY)||Math.abs(e.deltaX)<25)return;
+  e.preventDefault();const now=Date.now();if(now<wheelLock)return;wheelLock=now+900;e.deltaX>0?next():prev()},{passive:false});
+addEventListener("keydown",e=>{if(e.target.closest("input,textarea"))return;
+  if(e.key==="ArrowRight"||e.key==="PageDown")next();else if(e.key==="ArrowLeft"||e.key==="PageUp")prev();
+  else if(e.key==="Home"&&pf)pf.flip(0);else if(e.key==="End"&&pf)pf.flip(pages.length-1)});
+
+/* ---------- layout editor (#edit) ---------- */
+const ed=document.getElementById("editor");let editing=false,cur=1;
+const $=id=>document.getElementById(id);
+function select(n){cur=Math.max(1,Math.min(70,n));pages.forEach(p=>p.classList.remove("selected"));tp(cur).classList.add("selected");fill()}
+function pickVisible(){const i=pf.getCurrentPageIndex();const p=pages[i];if(p&&p.dataset.tale)select(+p.dataset.tale);else if(pages[i+1]&&pages[i+1].dataset.tale)select(+pages[i+1].dataset.tale)}
+function fill(){const c=conf(cur),fit=JSON.parse(tp(cur).dataset.fit||"{}");
+  $("ed-num").textContent=cur;$("ed-name").textContent=TALES[cur-1][1];
+  ed.querySelectorAll(".seg").forEach(s=>{const v=c[s.dataset.key]||(s.dataset.key==="pos"?"top":"center");
+    s.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v))});
+  const vals={img:c.img||fit.img,dx:c.dx||0,dy:c.dy||0,title:c.title||250,text:c.text||fit.text};
+  for(const k in vals){$("ed-"+k).value=vals[k];$("v-"+k).textContent=vals[k]}
+  $("ed-out").value=JSON.stringify(Object.assign({},BASE,LOCAL),null,1);}
+function setKey(k,v){LOCAL[cur]=Object.assign({},conf(cur),{[k]:v});saveLocal();layoutSpread(cur);fill()}
+ed.querySelectorAll(".seg").forEach(s=>s.addEventListener("click",e=>{const b=e.target.closest("button");if(b)setKey(s.dataset.key,b.dataset.v)}));
+["img","dx","dy","title","text"].forEach(k=>$("ed-"+k).addEventListener("input",e=>setKey(k,+e.target.value)));
+$("ed-left").onclick=()=>{select(cur-1);go(cur)};$("ed-right").onclick=()=>{select(cur+1);go(cur)};
+$("ed-reset").onclick=()=>{delete LOCAL[cur];saveLocal();layoutSpread(cur);fill()};
+$("ed-copy").onclick=async()=>{const out=$("ed-out");out.value=JSON.stringify(Object.assign({},BASE,LOCAL),null,1);
+  try{await navigator.clipboard.writeText(out.value);$("ed-copy").textContent="Copied"}catch(e){out.focus();out.select();$("ed-copy").textContent="Select and copy"}
+  setTimeout(()=>$("ed-copy").textContent="Copy all changes",1800)};
+function setEdit(){editing=location.hash==="#edit";ed.hidden=!editing;book.classList.toggle("edit-mode",editing);
+  const hn=$("hint");hn.textContent=editing?"Edit mode: click a page to select it, use the arrows or buttons to turn pages.":(matchMedia("(pointer: coarse)").matches?hn.dataset.touch:"Click the right side of the book to turn the page, the left side to go back. On a trackpad, swipe.");
+  if(editing&&pf)pickVisible();if(!editing)pages.forEach(p=>p.classList.remove("selected"))}
+addEventListener("hashchange",setEdit);document.fonts.ready.then(()=>setTimeout(setEdit,50));
+})();
+</script>
+
+</body>
+</html>
