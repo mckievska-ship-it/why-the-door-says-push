@@ -7,6 +7,10 @@
 <meta property="og:title" content="Why the Door Says Push">
 <meta property="og:description" content="A book about design for adults, kids and product owners, by Anna Makiievska.">
 <meta property="og:type" content="book">
+<meta name="author" content="Anna Makiievska">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Why the Door Says Push</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +34,7 @@
   --table:#1d252b; --table-ink:#b7c7d2; --table-soft:#3a4852; --chrome:#a3acb2; --chrome-line:#46535c;
   --panel:#273138; --panel-ink:#e6edf2; --panel-line:#3c4a54; --accent:#6db8ec; color-scheme:dark}
 
-html,body{height:100%}
+html,body{height:100%;overscroll-behavior-x:none}
 body{background:var(--table);color:var(--table-ink);font-family:var(--f-hand);
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;box-sizing:border-box;padding-block:12px}
@@ -497,7 +501,7 @@ document.getElementById("jump").addEventListener("submit",e=>{e.preventDefault()
   if(n>=1&&n<=70){go(n);inp.blur()}else{inp.value="";inp.placeholder="1–70"}});
 let wheelLock=0;
 addEventListener("wheel",e=>{if(Math.abs(e.deltaX)<Math.abs(e.deltaY)||Math.abs(e.deltaX)<25)return;
-  e.preventDefault();const now=Date.now();if(now<wheelLock)return;wheelLock=now+900;e.deltaX>0?next():prev()},{passive:false});
+  e.preventDefault();const now=Date.now();if(now<wheelLock)return;wheelLock=now+900;e.deltaX<0?next():prev()},{passive:false});
 addEventListener("keydown",e=>{if(e.target.closest("input,textarea"))return;
   if(e.key==="ArrowRight"||e.key==="PageDown")next();else if(e.key==="ArrowLeft"||e.key==="PageUp")prev();
   else if(e.key==="Home"&&pf)pf.flip(0);else if(e.key==="End"&&pf)pf.flip(pages.length-1)});
